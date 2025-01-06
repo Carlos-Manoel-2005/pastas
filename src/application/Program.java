@@ -9,13 +9,10 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		String patch = "c:\\desc\\dx.txt";
-		FileReader fr = null;
-		BufferedReader br = null;
+		String path = "c:\\desc\\dx.txt";
+	
 		
-		try {
-			fr = new FileReader(patch);
-			br = new BufferedReader(fr);
+		try(BufferedReader br = new BufferedReader(new FileReader(path))) {
 			String line = br.readLine();
 			
 			while(line!= null) {
@@ -26,19 +23,7 @@ public class Program {
 		catch(IOException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
-		finally{
-			try {
-				if(br != null) {
-				br.close();
-				}
-				if(fr != null) {
-				fr.close();
-				}
-			}
-			catch(IOException e) {
-				e.printStackTrace();
-			}
-		}
+		
 		
 	}
 
