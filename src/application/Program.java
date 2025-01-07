@@ -1,27 +1,40 @@
 package application;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-
+import java.util.Scanner;
 
 public class Program {
 
 	public static void main(String[] args) {
 		
-		String[] lines = new String[]{" Bom dia "  , " Boa Tarde " ," Boa Noite"};
-		String path = "c:\\desc\\dx.txt";
+		Scanner sc = new Scanner(System.in);
 		
-		try(BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))){  // path sozinho cria/recria| path,true rescreve
-			for(String line : lines) {
-				bw.write(line);
-				bw.newLine();
-			}
+		System.out.println("Enter a folder path: ");
+		String strPath = sc.nextLine();
+		
+		File path = new File(strPath); 
+		
+		File[] folders = path.listFiles(File::isDirectory);
+		
+		System.out.println("FOLDERS: ");
+		for(File folder: folders) {
+			System.out.println(folder);
 		}
-		catch(IOException e) {
-			e.printStackTrace();
+		 
+		File[] files = path.listFiles(File::isFile);
+		
+		System.out.println("FILES: ");
+		for(File file: files) {
+			System.out.println(file);
 		}
 		
+		boolean success = new File(strPath + "\\subdir").mkdir();
+		System.out.println("Directory created successfuly: " + success);
+		
+		
+		sc.close();
 	}
 
 }
