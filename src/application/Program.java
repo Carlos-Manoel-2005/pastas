@@ -1,8 +1,7 @@
 package application;
 
-import java.io.BufferedWriter;
+
 import java.io.File;
-import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Program {
@@ -11,30 +10,16 @@ public class Program {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Enter a folder path: ");
+		System.out.println("Enter a file path: ");
 		String strPath = sc.nextLine();
 		
-		File path = new File(strPath); 
+		File path = new File(strPath);
 		
-		File[] folders = path.listFiles(File::isDirectory);
-		
-		System.out.println("FOLDERS: ");
-		for(File folder: folders) {
-			System.out.println(folder);
-		}
-		 
-		File[] files = path.listFiles(File::isFile);
-		
-		System.out.println("FILES: ");
-		for(File file: files) {
-			System.out.println(file);
-		}
-		
-		boolean success = new File(strPath + "\\subdir").mkdir();
-		System.out.println("Directory created successfuly: " + success);
-		
-		
+		System.out.println("getName: " + path.getName());// pega o nome do arquivo
+		System.out.println("getParent: " + path.getParent());// só o caminho
+		System.out.println("getPath: " + path.getPath()); // path inteiro
 		sc.close();
 	}
 
 }
+ 
